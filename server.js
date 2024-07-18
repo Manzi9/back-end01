@@ -5,7 +5,7 @@ const users = require("./users.json");
 app.get("/", (request, response) => {
   const _users = [...users];
   _users.forEach((user) => {
-    user.id = Math.random();
+    user.id = Math.round(Math.random() * 100);
   });
   response.send(users);
 });
