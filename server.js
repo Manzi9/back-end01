@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-
 const users = require("./users.json");
+
+app.use(express.json()); // Allows us to read body
+
+setID = Math.round(Math.random() * 10000);
 
 users.forEach((user) => {
   user.id = Math.round(Math.random() * 10000);
@@ -39,6 +42,13 @@ app.delete("/:id", (request, response) => {
 
 //====================================
 //Write One
+
+app.post("/", (request, response) => {
+  console.log(request.body);
+  users.push(request.body);
+  users[users.length - 1].id = setID;
+  response.send({ status: 1 });
+});
 
 //====================================
 
