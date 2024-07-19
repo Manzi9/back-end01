@@ -48,17 +48,28 @@ app.delete("/:id", (request, response) => {
 
 //====================================
 //Write One
-//TODO It doesn't check for duplicates yet
+// It doesn't check for duplicates or validate yet
 
 app.post("/", (request, response) => {
-  console.log(request.body);
+  console.log("new post reuqest", request.body);
   users.push(request.body);
   users[users.length - 1].id = setID;
   response.send({ status: 1 });
 });
 
 //====================================
+//Change One
 
+app.put("/:id", (request, result));
+
+const { id } = request.params;
+
+const indexOf = users.findIndex((user) => {
+  return user.id === Number(id);
+});
+users[indexOf] = request.body;
+
+//====================================
 const port = process.env.PORT || 6001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
