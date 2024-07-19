@@ -4,18 +4,18 @@ const users = require("./users.json");
 
 app.use(express.json()); // Allows us to read body
 
-setID = Math.round(Math.random() * 10000);
+setID = Math.round(Math.random() * 10000); //end up repeating this
 
 users.forEach((user) => {
   user.id = Math.round(Math.random() * 10000);
 });
 
 app.get("/", (request, response) => {
+  console.log("new get request");
   response.send(users);
 });
 
 //====================================
-//==
 //delete one
 app.delete("/:id", (request, response) => {
   console.log("new delete request", request.params.id);
