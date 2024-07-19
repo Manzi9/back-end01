@@ -21,7 +21,7 @@ app.get("/", (request, response) => {
 //====================================
 //Delete one
 
-//I feel like this is only deleting the ID itself, rather than the entire object
+//This works initially, but after a few mins the object reappears?
 app.delete("/:id", (request, response) => {
   console.log("new delete request", request.params.id);
   const { id } = request.params;
@@ -48,6 +48,7 @@ app.delete("/:id", (request, response) => {
 
 //====================================
 //Write One
+//TODO It doesn't check for duplicates yet
 
 app.post("/", (request, response) => {
   console.log(request.body);
