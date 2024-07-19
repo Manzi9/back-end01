@@ -10,13 +10,18 @@ users.forEach((user) => {
   user.id = Math.round(Math.random() * 10000);
 });
 
+//====================================
+//Get all
+
 app.get("/", (request, response) => {
   console.log("new get request");
   response.send(users);
 });
 
 //====================================
-//delete one
+//Delete one
+
+//I feel like this is only deleting the ID itself, rather than the entire object
 app.delete("/:id", (request, response) => {
   console.log("new delete request", request.params.id);
   const { id } = request.params;
@@ -27,13 +32,13 @@ app.delete("/:id", (request, response) => {
 
   if (id < 0 || Number.isNaN(id)) {
     //this fails for NaN?!
-    response.status(400).send("Incorrect ID");
+    response.status(400).send("Incorrect ID", { status: 0 });
     return;
   }
 
   if (id === NaN) {
     //also fails
-    response.status(400).send("ID doesn't exist");
+    response.status(400).send("ID doesn't exist", { status: 0 });
   }
 
   users.splice(indexOf, 1);
